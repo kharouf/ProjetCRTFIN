@@ -1,0 +1,436 @@
+
+
+// {
+// "num_dossier":"CRTGHV",
+// "nom":"wala",
+// "prenom":"kharouf",
+// "sexe":"homme",
+// "nom_pere":"abdeselem",
+// "nom_prenom_mere":"habiba beji",
+// "num_tele_parents":"24243588",
+// "date_n":"05/08/1996",
+// "lieu_n":"Gabes",
+// "adresse":"rue ibn khaldoun ",
+// "cin":"13232062",
+// "Annee_volontariat":"2018",
+// "profession":"etudiant",
+// "num_tele":"24243586",
+// "email":"kharoufwala24@gmail.com",
+// "niveau":"bac+5",
+// "diplome":"FSG",
+// "certificat_crt":"secourisme",
+// "nom_etablisement":"FSG",
+// "loisir":"volantaire",
+// "secouriste":"oui",
+// "image":"wala",
+//  "commentaire":"bien",
+//  "nb_participation":"3"
+// }
+
+
+// {
+      
+      
+//       "name": "The Adventures of Kira and Morrison",
+//       "description": "The Adventures of Kira and Morrison is coming to Snickertown in a can't miss performance.",
+//       "image": [
+//         "https://img.freepik.com/free-vector/floral-wedding-invitation-card-template_52683-20098.jpg?w=740&t=st=1677530356~exp=1677530956~hmac=ce8c8060bd3ad1beff74e6686e830bdd5d31236b6982d0d3529fe68087f785ba",
+//         "https://img.freepik.com/free-vector/floral-wedding-invitation-card-template_52683-20098.jpg?w=740&t=st=1677530356~exp=1677530956~hmac=ce8c8060bd3ad1beff74e6686e830bdd5d31236b6982d0d3529fe68087f785ba",
+//         "https://img.freepik.com/free-vector/floral-wedding-invitation-card-template_52683-20098.jpg?w=740&t=st=1677530356~exp=1677530956~hmac=ce8c8060bd3ad1beff74e6686e830bdd5d31236b6982d0d3529fe68087f785ba"
+//        ],
+//       "startDate": "2023-02-29T19:12-05:00",
+//       "endDate": "2023-02-29T23:16-05:00",
+      
+//         }
+
+
+"num_dossier": 1
+
+// بيانات خاصة بصاحب الحق
+"nom":"wala"
+"prenom": "kharouf"
+
+"date_n": "05/08/1996"
+"lieu_n": "Gabes"
+
+"localisation": "rue"
+"adresse": "Gol"
+"num_tele": "24243586"
+"cin":"13232025"
+"type_Carte_traitement": "CNSS"
+"num_securite_sociale": "123456789548"
+// بيانات خاصة بالقرين
+"nom": "habiba"
+"prenom": "beji"
+
+date_n: "25/05/1959"
+"lieu_n": "gabes"
+
+"cin": "12354655"
+// الحالة المدنية
+// حالة وفاة
+"Deces": false
+// حالة طلاق
+
+"divorce": false
+// حالة اعاقة
+"handicap": false
+"malade": "ddddd",
+// مكان عمل الزوج
+   "travail": "aaaaaaaaaaaa",
+"lieu_travail_mari": "ghannouche"
+"lieu_travail_mari": " "
+// الأبناء
+"fils": [{
+    "nom": "ali",
+    "prenom": "beji",
+    "date_n":"01/12/1996",
+    "annee_scolaire": "secondaire",
+    "sexe": "homme",
+    "taille_f": "xl"
+}],
+// وضع مقر السكن
+"detailes": "fatigue"
+"image": "wala"
+"Commentaire": "waa"
+
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { edituser, userCurrent } from "../JS/userSlice/UserSlice";
+import "../components/EditProfil.css";
+const EditPrfil = () => {
+  const dispatch = useDispatch();
+  // const [ping, setping] = useState("");
+  // useEffect(() => {
+  //   dispatch(userCurrent());
+  // }, []);
+  const user = useSelector((state) => state.user.user);
+  const [update, setupdate] = useState({
+    name: user.name,
+    lastName: user.lastName,
+    anneenaissance: user.anneenaissance,
+    genre: "",
+    email: user.email,
+    Profession: user.Profession,
+    marqueVoiture: user.marqueVoiture,
+    colorVoiture: user.colorVoiture,
+    Climatiseur: user.Climatiseur,
+    tabac: user.tabac,
+  });
+
+  const navigate = useNavigate();
+  return (
+    <section className="edit-prof">
+      <div className="edit">
+        <div className="iput-left">
+          {/* <form onSubmit={(e) => e.preventDefault()} className="form-signin"> */}
+          <h3> Info Personel </h3>
+
+          <input
+            // type="text"
+            // className="form-control"
+            // name="username"
+            defaultValue={user.name}
+            // required=""
+            // autofocus=""
+            onChange={(e) => setupdate({ ...update, name: e.target.value })}
+          />
+          <input
+            type="text"
+            className="form-control"
+            name="username"
+            defaultValue={user.lastName}
+            required=""
+            autofocus=""
+            onChange={(e) => setupdate({ ...update, lastName: e.target.value })}
+          />
+          <input
+
+          value={user?.anneenaissance}
+            // type="text"
+            // className="form-control"
+            // name="username"
+            // placeholder={user?.anneenaissance}
+            // required=""
+            // autofocus=""
+            // onChange={(e) =>
+            //   setupdate({ ...update, anneenaissance: e.target.value })
+            // }
+          />
+          
+          <input
+            // type="text"
+            // className="form-control"
+            // name="username"
+            // placeholder=""
+            // required=""
+            // autofocus=""
+            value={user?.genre}
+            // onChange={(e) => setupdate({ ...update, genre: e.target.value })}
+          />
+          <input
+            type="text"
+            className="form-control"
+            // placeholder={user?.email}
+              defaultValue={user?.email}
+            onChange={(e) => setupdate({ ...update, email: e.target.value })}
+          />
+          <input
+            type="text"
+            className="form-control"
+            name="username"
+            placeholder="Votre Profession"
+            required=""
+            autofocus=""
+            onChange={(e) =>
+              setupdate({ ...update, Profession: e.target.value })
+            }
+          />
+
+          {/* </form> */}
+        </div>
+        {user && user.Role == "user" ? (
+          <div className="iput-raght">
+            <h3> Info Voiture </h3>
+
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              placeholder="Votre marque de voiture"
+              required=""
+              autofocus=""
+              onChange={(e) =>
+                setupdate({ ...update, marqueVoiture: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              placeholder="Color de voiture"
+              required=""
+              autofocus=""
+              onChange={(e) =>
+                setupdate({ ...update, colorVoiture: e.target.value })
+              }
+            />
+
+            <select
+              onChange={(e) =>
+                setupdate({ ...update, Climatiseur: e.target.value })
+              }
+              class="form-control"
+              required="required"
+            >
+              <option value="">-- Climatiseur --</option>
+              <option value="Voiture Climatisé">Voiture Climatisé</option>
+              <option value="Voiture Non Climatisé">
+                Voiture Non Climatisé
+              </option>
+            </select>
+            <select
+              onChange={(e) => setupdate({ ...update, tabac: e.target.value })}
+              class="form-control"
+              required="required"
+            >
+              <option value="">-- Choix du Tabac --</option>
+              <option value="Autoriser le TABAC">Autoriser le TABAC</option>
+              <option value="Refuser le TABAC">Refuser le TABAC</option>
+            </select>
+          </div>
+        ) : null}
+      </div>
+      <button
+        onClick={() => {
+          dispatch(edituser({ id: user._id, user: update }));
+          // setping(!ping);
+          setTimeout(() => {
+            navigate("/profil");
+          }, 2000);
+        }}
+      >
+        Edit
+      </button>
+    </section>
+  );
+};
+
+export default EditPrfil;
+
+
+// {
+//   "num_dossier":"CRTGHV",
+      
+  
+//   "nom":"wala",
+//   "prenom":"kharouf",
+//   "sexe":"homme",
+//   "nom_pere":"abdeselem",
+//   "nom_prenom_mere":"habiba beji",
+//   "date_n":"05/08/1996",
+//   "lieu_n":"Gabes",
+//   "adresse":"rue ibn khaldoun ",
+//   "cin":"13232062",
+//   "Annee_volontariat":"2018",
+//   "profession":"etudiant",
+//   "num_tele":"24243586",
+//   "email":"kharoufwala24@gmail.com",
+//   "niveau":"bac+5",
+//   "diplome":"FSG",
+//   "nom_etablisement":"FSG",
+//   "loisir":"volantaire",
+//   "image":"wala",
+//    "isBenevole":true
+//   }
+{/* <table className="table">
+        <tr>
+          <td className="td">جذف</td>
+          <td className="td">تعديل</td>
+          <td className="td">الاسم</td>
+          <td className="td">القب</td>
+          <td className="td"> البريد الإلكتروني  </td>
+          <td className="td"> مسؤل  </td>
+          <td className="td"> متطوع  </td>
+          <td className="td">الصورة</td>
+        </tr>
+      </table> */}
+
+<div className="user" >
+        <table className="table" >
+          {benevoles?.map((benevole, i) =>
+            <tr key={i}>
+              <td className="td"><button className=" btnc-userlist"
+                onClick={() => {
+                  dispatch(benevoledelet(benevole?._id)
+                  )
+                  setPingB(!pingB)
+                }}
+              >حذف</button></td>
+              <td className="td "><Link to="/dashboard/updatebenevole" state={benevoles}><button  className=" btna-userlist">تعديل</button></Link></td>
+              <td className="td">{benevole?.nom}</td>
+              <td className="td">{benevole?.prenom}</td>
+              <td className="td">{benevole?.num_tele} </td>
+              {/* <td className="td"> {user?.password}</td> */}
+
+              <td className="td"><img src="" alt="profile" /></td>
+            </tr>
+          )}
+        </table>
+      </div>
+
+class ApexChart extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    
+      series: [
+        {
+          name: 'Bob',
+          data: [
+            {
+              x: 'Design',
+              y: [
+                new Date('2019-03-05').getTime(),
+                new Date('2019-03-08').getTime()
+              ]
+            },
+            {
+              x: 'Code',
+              y: [
+                new Date('2019-03-08').getTime(),
+                new Date('2019-03-11').getTime()
+              ]
+            },
+            {
+              x: 'Test',
+              y: [
+                new Date('2019-03-11').getTime(),
+                new Date('2019-03-16').getTime()
+              ]
+            }
+          ]
+        },
+        {
+          name: 'Joe',
+          data: [
+            {
+              x: 'Design',
+              y: [
+                new Date('2019-03-02').getTime(),
+                new Date('2019-03-05').getTime()
+              ]
+            },
+            {
+              x: 'Code',
+              y: [
+                new Date('2019-03-06').getTime(),
+                new Date('2019-03-09').getTime()
+              ]
+            },
+            {
+              x: 'Test',
+              y: [
+                new Date('2019-03-10').getTime(),
+                new Date('2019-03-19').getTime()
+              ]
+            }
+          ]
+        }
+      ],
+      options: {
+        chart: {
+          height: 350,
+          type: 'rangeBar'
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true
+          }
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: function(val) {
+            var a = moment(val[0])
+            var b = moment(val[1])
+            var diff = b.diff(a, 'days')
+            return diff + (diff > 1 ? ' days' : ' day')
+          }
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'light',
+            type: 'vertical',
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [50, 0, 100, 100]
+          }
+        },
+        xaxis: {
+          type: 'datetime'
+        },
+        legend: {
+          position: 'top'
+        }
+      },
+    
+    
+    };
+  }
+
+
+
+  render() {
+    return (
+      
+
+<div id="chart">
+<ReactApexChart options={this.state.options} series={this.state.series} type="rangeBar" height={350} />
+</div>

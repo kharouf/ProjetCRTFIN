@@ -1,0 +1,123 @@
+.editbtn{
+    /* border: 1px solid ; */
+    padding-left: 5px;
+    padding-top: 5px;
+  }
+  .adduser{
+    width: 500px;
+    height: auto;
+    margin-top: 1cm;
+  }
+  
+  
+  .updateuser{
+    margin-top: 6cm;
+    margin-bottom: 1cm;
+    padding-bottom: 1cm;
+    display: flex;
+    align-items: center;;
+    flex-direction: column;
+    /* justify-content: space-between; */
+  
+    gap: 30px;
+    width: 550px;
+    height:auto ;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 8px 16px 10px rgba(0,0,0,0.2);
+    border-radius: 20px;
+  }
+  .form-signin11{
+    width: 600px;
+
+  }
+  .form-signin11 .fff{
+display: flex;
+gap: 20px;
+justify-content: space-between;
+align-items: center;
+justify-items: center;
+padding:10px 5px;
+/* border: 1px solid; */
+
+width: 85%;
+  }
+  .updateuser1{
+    margin-top: 6cm;
+    margin-bottom: 1cm;
+    padding-bottom: 1cm;
+    display: flex;
+    align-items: center;;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    width: 800px;
+  /* border: 1px solid red; */
+    gap: 30px;
+    
+    height:auto ;
+  
+    
+  }
+  .listbenevole{
+    margin-top: 6cm;
+    margin-bottom: 1cm;
+    padding-bottom: 1cm;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;;
+    
+    /* justify-content: space-between; */
+  
+    gap: 30px;
+    width: 80vw;
+    height:auto ;
+  
+  background-color: rgb(255, 255, 255);
+    box-shadow: 0px 8px 16px 10px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .listuser{
+    margin-top: 6cm;
+    margin-bottom: 1cm;
+    padding-bottom: 1cm;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    /* justify-content: space-between; */
+  
+    gap: 10px;
+    width: auto;
+    height:auto ;
+  
+  background-color: rgb(255, 255, 255);
+    box-shadow: 0px 8px 16px 10px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  
+  table {
+    /* border: 2px solid #df4252; */
+    width: 70vw ;
+    text-align: center;
+    display: flex;
+  
+  
+    background-color:#858181;
+   box-shadow: 1px 1px 2px 0 rgba(0,0, 0, 0.486);
+   
+  }
+  .td {
+  
+  
+  border-right: 2px solid #6b6a6a;
+  height: 40px;
+  width: 180px;
+  white-space:pre-line;
+  
+
+  
+  }
+  

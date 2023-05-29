@@ -1,0 +1,122 @@
+.comite{
+    padding-bottom: 1cm;
+}
+.comite-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2cm;
+  background: rgb(133, 7, 7);  
+  height: 150px;
+}
+h2{
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    font-size: 2em;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #4B4B4C;
+}
+.comite-title h1{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+/* list_comite */
+.list_comite{
+    background-color: #ffffff;
+    
+    
+    
+}
+.list1, .list2,.list3{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1cm 0;
+    gap: 30px;
+    
+}
+
+/* container */
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    /* border: 1px solid black; */
+    width: 300px;
+    height: 350px;
+  
+}
+.container_image img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    
+    box-shadow: 0 25px 50px rgba(223, 10, 10, 0.24);
+
+}
+.container_title{
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
+    width: 200px;
+}
+.container_poste{
+    color: white;
+    font-weight:bold ;
+}
+
+.container_poste h3{
+    color: rgb(255, 255, 255);
+    
+}
+
+.container_poste1 {
+    display: flex;
+    color: white;
+    font-weight:bold ;
+    justify-content: space-around;
+    /* border : 1px solid black; */
+    padding: 10px;
+    width: 100%;
+
+}
+
+/* test */
+
+  
+  .card_box {
+    width: 300px;
+    height: 350px;
+    border-radius: 20px;
+    background: linear-gradient(170deg, rgba(58, 56, 56, 0.623) 0%, rgb(31, 31, 31) 100%);
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.55);
+    cursor: pointer;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .card_box:hover {
+    transform: scale(0.9);
+  }
+  
+  .card_box span {
+    position: absolute;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    top: -10px;
+    left: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+ 

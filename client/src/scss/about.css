@@ -1,0 +1,91 @@
+.about{
+    background-color: rgba(32, 31, 31, 0.562); 
+    width: 98.8vw;
+    height: 600px;
+    /* border: 1px solid; */
+/* margin-top: 2cm; */
+
+ 
+    
+   }
+   .about-container{
+     
+    width: 98vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 100px;
+    /* border: 5px solid red; */
+    padding: 2cm ;
+   
+    
+   }
+   h2{
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    font-size: 2em;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #4B4B4C;
+}
+
+   .title-about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid; */
+    gap: 20px;
+
+   }
+   .title-about p{
+    font-size: 1.5em;
+    font-weight: bold;
+    /* border: 1px solid; */
+    width: 46vw;
+    color: rgb(8, 8, 8);
+    text-align: right;
+    line-height: 2em;
+   }
+   .title-about #p{
+    font-size: 1.5em;
+    font-weight: bold;
+    /* border: 1px solid ; */
+    width: 46vw;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    line-height: 1.8em;
+    
+   }
+   .title-about h1{
+    font-size: 2.5em;
+    font-weight: bold;
+    /* border: 1px solid; */
+    width: 50vw;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding-right: 1cm;
+   }
+
+   .title-button{
+    background: red;
+    color: rgb(255, 255, 255);
+    border: none;
+    font-size: 1.5em;
+    /* font-weight: bold; */
+    width: auto;
+    height: 60px;
+    border-radius: 15px;
+    padding: 10px;
+    font-weight: bold;
+
+   }
+   .title-button:hover{
+    background-color: transparent;
+    border: 3px solid red;
+    color: black;
+   }
+
+   

@@ -1,0 +1,76 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@cloudinary/react": "^1.11.1",
+    "@cloudinary/url-gen": "^1.9.2",
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@googlemaps/js-api-loader": "^1.15.1",
+    "@mui/x-date-pickers": "^6.5.0",
+    "@reduxjs/toolkit": "^1.9.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
+    "emoji-picker-react": "^4.4.7",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.0",
+    "react-bootstrap": "^2.7.2",
+    "react-chartjs-2": "^5.2.0",
+    "react-custom-radio-buttons-group": "^1.0.5",
+    "react-dom": "^18.2.0",
+    "react-grid-carousel": "^1.0.1",
+    "react-icons": "^4.8.0",
+    "react-localization": "^1.0.19",
+    "react-pro-sidebar": "^1.0.0",
+    "react-radio-buttons": "^1.2.2",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.2",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
+    "react-slick": "^0.29.0",
+    "react-slideshow-image": "^4.2.1",
+    "react-spinners": "^0.13.8",
+    "react-sweetalert2": "^0.5.2",
+    "react-tailwindcss-datepicker": "^1.5.1",
+    "react-time-picker": "^5.2.0",
+    "react-to-print": "^2.14.12",
+    "sweetalert2": "^11.7.5",
+    "sweetalert2-react-content": "^5.0.7",
+    "swiper": "^9.1.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@iconify/react": "^4.1.0"
+  }
+}
