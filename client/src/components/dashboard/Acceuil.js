@@ -26,6 +26,7 @@ const Acceuil = ({users ,benevole,evenement, ping, setPing}) => {
    <div className='date_nb'>
     <div className="datz">
     <Date/>
+   
   </div>
    <div className="charts">
     
@@ -36,7 +37,7 @@ const Acceuil = ({users ,benevole,evenement, ping, setPing}) => {
     <div className="nb">
       <h1>عدد الأنشطة</h1>
     </div>
-   <Icon icon="heroicons:user-group" width="100" />
+    <Icon icon="clarity:event-solid" width="100" />
 
     <h1>
     {evenement?.length}</h1>
@@ -46,10 +47,11 @@ const Acceuil = ({users ,benevole,evenement, ping, setPing}) => {
    <div className="nb">
       <h1>عدد المتطوعين</h1>
     </div>
-   <Icon icon="clarity:event-solid" width="100" />
+    <Icon icon="heroicons:user-group" width="100" />
+   
 
    <h1>
-    {benevole?.length}
+    {users?.length||0} 
     </h1>
    </div>
    </div>

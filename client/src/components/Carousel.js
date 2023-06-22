@@ -4,7 +4,7 @@ import React from 'react';
 import { Fade, Zoom } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 // import image1 from '../assets/images/new-lod.gif'
-import image1 from '../assets/images/slide7.jpg'
+import image1 from '../assets/images/comite/image4 home.png'
 import image2 from '../assets/images/slide2.jpg'
 import image3 from '../assets/images/slide3.JPG'
 import image4 from '../assets/images/slide4.JPG'

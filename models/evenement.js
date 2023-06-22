@@ -2,8 +2,11 @@ const mongoose  =require('mongoose');
 
 const schema = mongoose.Schema
 
+   const timeDate = new Date()
+ 
 
 const Evenementschema = new schema({
+
    
    name:{
     type:String,
@@ -14,7 +17,8 @@ const Evenementschema = new schema({
     
    },
    image:{
-    type:String,
+      type: String
+    
        
    },
    startDate:{
@@ -25,6 +29,17 @@ const Evenementschema = new schema({
     type:Date,
     
    },
+   instatnt:{
+      type:Date,
+      default:timeDate,
+   },
+   time:{
+      type:String,
+   },
+   position: {
+      type: String
+   },
+
    clientId: {
       type:mongoose.Schema.Types.ObjectId, 
       ref: "user"

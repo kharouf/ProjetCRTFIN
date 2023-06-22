@@ -34,6 +34,102 @@ const Userschema = new schema({
       type:Boolean,
       default:false
      },
+     Confirme:{
+      type:Boolean,
+      default:false
+     },
+     sexe:{
+      type:String,
+      
+     },
+     nom_pere:{
+      type:String,
+      
+     },
+     nom_mere:{
+      type:String,
+      
+     },
+     prenom_mere:{
+        type:String,
+        
+       },
+  //    
+     num_tele_parents:{
+      type:Number,
+     },
+  //    
+     date_n:{
+      type:Date,
+      
+     },
+     lieu_n:{
+      type:String
+     },
+     adresse:{
+      type:String,
+      
+     },
+     cin:{
+      type:Number,
+      
+     },
+     // 
+     Annee_volontariat:{
+      type:Number,
+      
+     },
+     profession:{
+      type:String    
+     },
+     num_tele:{
+      type:Number,
+      
+      },
+     email:{
+      type:String,
+      
+     },
+     niveau:{
+      type:String,
+      
+     },
+     diplome:{
+      type:String,
+      
+     },
+     certificat_crt:{
+        type:String,
+        
+       },
+     nom_etablisement:{
+      type:String,
+      
+     },
+     loisir:{
+      type:String,
+      
+     },
+     secouriste:{
+        type:String,
+        
+       },
+  
+  
+     image:{
+      type:String,
+  
+     },
+  //   admin 
+       commentaire:{
+        type:String,
+        
+       },
+       nb_participation:{
+        type:String,
+        
+       },
+
      benevole: {
       type:mongoose.Schema.Types.ObjectId,
       ref: "benevole"

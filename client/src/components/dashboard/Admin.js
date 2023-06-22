@@ -88,14 +88,15 @@ const Admin = () => {
             <div className='Navbar-login-Admin' onClick={() => handleOpen()}>
 
 
-              <h6> {user?.name}
+              <h6> 
 
 
 
 
 
-                <Icon icon="mdi:user-circle-outline" width="50" height="50" color='green' />
-
+                {/* <Icon icon="mdi:user-circle-outline" width="50" height="50" color='green' /> */}
+                <img className='photoprofile' src={user?.image}  width="50px " height="50px" alt="" srcset="" />
+                {user?.name}
 
 
               </h6>
@@ -134,7 +135,7 @@ const Admin = () => {
             {/* <img src={logo} alt="" width={"100px"} height={"100px"} /> */}
 
             <div className="retour">
-              <Link className='link-h' to="/"> <Icon icon="carbon:user-avatar" color="green" width="64" height="64" /></Link>
+              <Link className='link-h' to="/"> <img className='photoprofile' src={user?.image}  width="80px " height="80px" alt="" srcset="" /></Link>
             </div>
             <h1 className='title'>{user?.name}</h1>
           </div>
@@ -168,18 +169,17 @@ const Admin = () => {
               }
               }> <h1>مستخدم</h1> </Link>
             </div>
-            {openuser ?
+            {/* {openuser ?
               <div className='sidebar__menu__item__icon' >
 
-                {/* <Link to="/dashboard/edituser">تعديل</Link>
-                <Link to="/dashboard/deletuser">مسح </Link> */}
+               
                 <div className="links">
 
                   <Link className='h1' text-crud to="/dashboard/adduser">إضافة مستخدم</Link>
                   <Icon icon="mdi:user-add" color="green" width="25" height="25" />
                 </div>
 
-              </div> : null}
+              </div> : null} */}
 
 
 
@@ -231,7 +231,7 @@ const Admin = () => {
 
             <div className='sidebar__menu__item' onClick={() => setOpenevent(!openevent)} >
 
-              <Icon icon="uil:file-plus-alt" color="white" width="50" height="50" />
+              <Icon icon="material-symbols:event-list" color="white" width="50" height="50" />
 
               <Link to="/dashboard/listevents" text-crud onClick={() => {
                 dispatch(evenementget())
@@ -240,16 +240,16 @@ const Admin = () => {
               }}> <h1>أخبار & نشاطات</h1> </Link>
 
             </div>
-            {openevent ?
+            {/* {openevent ?
               <div className='sidebar__menu__item__icon' >
 
 
 
-                {/* <div className="links">
+                <div className="links">
 
                 
                   <Icon icon="mdi:user-add" color="green" width="25" height="25" />
-                </div> */}
+                </div>
                 <div className="links">
 
                   <Link className='h1' text-crud to="/dashboard/Addevent">إضافة نشاط</Link>
@@ -257,7 +257,7 @@ const Admin = () => {
                 </div>
 
 
-              </div> : null}
+              </div> : null} */}
 
 
 
@@ -265,24 +265,26 @@ const Admin = () => {
 
 
           {/* hhhh */}
-          {/* <div className="sidebar-crud">
+          <div className="sidebar-crud">
 
             <div className='sidebar__menu__item' onClick={() => setOpenfamil(!opendfamil)} >
 
-              <Icon icon="uil:file-plus-alt" color="white" width="50" height="50" />
+              {/* <Icon icon="uil:file-plus-alt" color="white" width="50" height="50" /> */}
+              {/* <Icon icon="material-symbols:event-list" color="white" width="50" height="50" /> */}
+              <Icon icon="material-symbols:family-restroom" color="white" width="50" height="50" />
 
               <Link to="/dashboard/GetFP" text-crud onClick={() => {
                 dispatch(getfamillesP())
                 setPingA(!pingA)
-              }}> <h1>pouvre</h1> </Link>
+              }}> <h1>عائلات أصحاب الحق</h1> </Link>
 
             </div>
-            {opendfamil ?
+            {/* {opendfamil ?
               <div className='sidebar__menu__item__icon' >
 
 
 
-                {/* <div className="links">
+                 <div className="links">
 
                 
                   <Icon icon="mdi:user-add" color="green" width="25" height="25" />
@@ -294,11 +296,11 @@ const Admin = () => {
                 </div>
 
 
-              </div> : null}
+              </div> : null} */}
 
 
 
-          </div> */}
+          </div>
 
           {/* hhh */}
         </div>

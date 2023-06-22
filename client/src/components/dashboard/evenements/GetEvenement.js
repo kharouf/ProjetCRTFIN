@@ -7,6 +7,7 @@ import gofa from "../../../assets/images/gofa.jpg";
 import '../../../scss/event.css'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { Icon } from '@iconify/react';
 
 const GetEvenement = () => {
   function reverseString(str) {
@@ -34,13 +35,48 @@ const GetEvenement = () => {
   // const date=evenements?.startDate.split("T")
   console.log("date", evenements)
   return (
-    <>
+    <div className='addusercontent'>
+    <div className="lists">
+   {/* اضف مستخدم */}
+       <button ><Link to="/dashboard/Addevent"><Icon icon="mdi:event-add" width="30" /> </Link> </button>
+
+      
+       <div className="nubuser">
+       {/* <Icon icon="octicon:number-16" width="30" color='black' />    */}
+       {/* <Icon icon="fluent:calendar-week-numbers-24-regular" width="30" rotate={2} /> */}
+        {/* <h1>عدد المستخدمين </h1> */}
+        <h1> {evenements?.length} </h1>
+        <Icon icon="tabler:number" width="30" />
+       </div>
+       
+       
+    </div>
+    <div className='title-listes'>
+      <h1>قائمة النشاطات</h1>
+    </div>
       <div className='listevent'>
 
-        {evenements?.map((evenement, i) =>
+      {evenements?.length == 0 ? 
+<div className='lod'>
+     <h3 class="animate-charcter"> </h3>
+      <div class='co'>
+  <div class='loader'>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--text'></div>
+  </div>
+</div> 
+</div>
+:
+
+        evenements?.map((evenement, i) =>
           <div key={i} className="events">
             <div className="cardimg">
-              <img src={gofa} alt="" />
+              <img src={evenement?.image} alt="" />
             </div>
             <div className="discription">
 
@@ -63,10 +99,12 @@ const GetEvenement = () => {
   }}>جذف</button>
 <button className=" btna-userlist"> <Link to={`/dashboard/updateevents/${evenement?._id}`} state={evenements}> تعديل</Link></button>
             </div>
-          </div>)}
+          </div>)
+          
+          }
 
       </div>
-    </>
+    </div>
   )
 }
 

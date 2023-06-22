@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {useReactToPrint} from 'react-to-print'
 import Navbar from '../../Navbar'
 import { BrowserRouter, Link, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const reloadPage = () => {
   window.location.reload()
 
 }
-const DetaillesB = () => {
+const DetaillesB = ({idb,state,pingB, setPingB}) => {
   // fuction upload
  const componentRef = useRef()
  const handelPrint = useReactToPrint({
@@ -25,6 +25,12 @@ const DetaillesB = () => {
   documentTitle:'إستمارة تطوع',
   onAfterPrint:()=> alert('تمت عملية الطباعة بنجاح')
  })
+
+ useEffect(() => {
+ 
+ 
+   }, [pingB])
+ 
   const location = useLocation()
   const benevoled = location.state
   console.log("detaille", benevoled)
@@ -43,7 +49,8 @@ const DetaillesB = () => {
       reader.readAsDataURL(file);
     }
   }
-  // const benevole = useSelector(state => state.benevole.benevole)
+  const usera = useSelector(state => state.user?.usera)
+  console.log("usera", usera)
 
   // cancel button
   const [inputValue, setInputValue] = useState("");
@@ -138,7 +145,7 @@ const DetaillesB = () => {
 
           </div>
 
-          <h3 className='numdossier11'> {user?.num_dossier}  :&nbsp;رقم الملف</h3>
+          <h3 className='numdossier11'> {usera?.state.num_dossier}  :&nbsp;رقم الملف</h3>
           <div className="title-profile11">
             إستمارة تطوع في الهلال الأحمر التونسي
             {/* {benevole?.nom} */}
@@ -151,9 +158,9 @@ const DetaillesB = () => {
             <div className="input11">
               {/* <label>الإسم </label> */}
               <label >:&nbsp;الإسم</label>
-              <label className="input-label" > {benevoled?.nom}   </label>
+              <label className="input-label" > {benevoled?.name}   </label>
               <label>:&nbsp;اللقب </label>
-              <label className="input-label" > {benevoled?.prenom}   </label>
+              <label className="input-label" > {benevoled?.lastName}   </label>
 
             </div>
 

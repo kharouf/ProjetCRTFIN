@@ -18,25 +18,26 @@ import { Icon } from '@iconify/react'
 
 // import { Link } from 'react-scroll'
 
-const Navbar = ({ping ,setPing, benev}) => {
+const Navbar = ({ping ,setPing, benev , idb}) => {
   // is auth
-  const {params} = useParams()
+  // const {idb} = useidb()
   const user = useSelector(state => state.user.user)
-  const benevoles = useSelector(state => state.benevole?.benevole);
+  // const benevoles = useSelector(state => state.benevole?.benevole);
   const evenements = useSelector(state => state.evenement?.evenement);
-  console.log("date", evenements)
-  console.log("benevole", benev?.nom)
+  // console.log("date", evenements)
+  console.log("benev", benev)
+  // console.log("idbenevole", {id:idb._id})
   // {benevoles?.map((ben) => {
   //   <>
   //  { console.log("test" ,ben.nom)}
   //   </>
   //                   })}
-  console.log("user", user?.name)
+  // console.log("user", user?.name)
   const isAuth = localStorage.getItem('token');
   const dispatch = useDispatch()
   const location = useLocation()
   const benevolen = location.state
-  console.log("navaavav", benevolen)
+  // console.log("navaavav", benevolen)
   useEffect(() => {
     if (isAuth) {
       dispatch(userCurrent())
@@ -58,6 +59,9 @@ const Navbar = ({ping ,setPing, benev}) => {
   // /////////////////////////////////////////////
 
   // open and close login
+
+
+  // console.log("idb", idb._id)
   const [open, setOpen] = useState(false);
   
   const handleOpen = () => {
@@ -118,15 +122,16 @@ const Navbar = ({ping ,setPing, benev}) => {
         
 
           {/* if benevole add this */}
-          {isAuth && user?.isBenevole === true && user.isAdmin === false?   (
+          {isAuth && user?.isBenevole === true && user?.Confirme===false?   (
             <>
               <div className="Navbar-links-admin">
 
-                <Link className='link' to="/profile">   إستمارة التطوع 
+                <Link className='link' to="/updateuser/" state={user}>   إستمارة التطوع 
 
                 
-
                 </Link>
+
+                
                
 
               </div>
@@ -135,9 +140,29 @@ const Navbar = ({ping ,setPing, benev}) => {
             </>
 
 
-          ) :   null
+          ) :  null}
+          
+          {user?.Confirme === true ?
 
-        } 
+<>
+<div className="Navbar-links-admin">
+
+  <Link className='link'to="/updateuser/" state={user}>   تعديل البيانات 
+
+  
+
+  </Link>
+ 
+
+</div>
+
+
+</>:null
+            }
+              
+            
+   
+         
          
 
 
@@ -149,12 +174,13 @@ const Navbar = ({ping ,setPing, benev}) => {
           (<div className='Navbar-login' onClick={() => handleOpen()}>
 
 
-            <h6> {user?.name}
+            <h6> 
               
 
 
-              <Icon icon="mdi:user-circle-outline" width="50" height="50" color='green' />
-
+              {/* <Icon icon="mdi:user-circle-outline" width="50" height="50" color='green' /> */}
+              <img className='photoprofile' src={user?.image ||logo}  width="50px " height="50px" alt="" srcset="" />
+              {user?.name}
 
 
             </h6>
@@ -197,6 +223,9 @@ const Navbar = ({ping ,setPing, benev}) => {
           )
         }
       </div>
+      {/* {user?._id == benev?.clientId ? "wala":"mech wala"} */}
+
+                
 
     </>
   )

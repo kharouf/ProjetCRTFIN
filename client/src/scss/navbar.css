@@ -405,3 +405,7 @@ display: none;
   color: rgb(207, 16, 16);
 }
 
+.photoprofile{
+  border-radius: 50%;
+  /* border: 1px solid black; */
+}

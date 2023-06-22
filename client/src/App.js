@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom';
 // import * as React from 'react';
 
 import Footer from './components/Footer';
@@ -41,6 +41,9 @@ import GetFP from './components/dashboard/famillesP/GetFP';
 import UpdateFP from './components/dashboard/famillesP/UpdateFP';
 import Acceuil from './components/dashboard/Acceuil';
 import DetaillesB from './components/dashboard/benevoles/DetaillesB';
+import Updateprofile from './components/Updateprofile';
+import UpdateProfile from './components/dashboard/users/UpdateProfile';
+import UpdateB from './components/dashboard/users/UpdateB';
 
 
 
@@ -63,12 +66,14 @@ dispatch(evenementget())
   }, [ping])
   const user = useSelector(state => state?.user?.user)
   const ben = useSelector(state => state?.benevole?.benevole);
-  const event = useSelector(state => state?.evenement?.evenement);
   // console.log("benevole" ,ben)
+  const event = useSelector(state => state?.evenement?.evenement);
+  
   // console.log("user" ,user)
 
-  
-  
+  const {params} = useParams()
+
+ 
   
 
   
@@ -76,17 +81,19 @@ dispatch(evenementget())
 
   return (
     <>
-      {location.pathname.includes('dashboa') ?null: <Navbar  benev ={ben} ping={ping} setPing={setPing} />}
+      {location.pathname.includes('dashboa') ?null: <Navbar idb={params} benev ={ben} ping={ping} setPing={setPing} />}
 
       <Routes>
         <Route exact path="/login" element={<Login ping={ping} setPing={setPing} />} />
-        <Route path="/profile" element={<Profile/>} />
+        <Route path='/profile/:params' element={<Profile idb={params}/>} />
+        {/* <Route exact path="/edituser/:id" element={<UpdateProfile/>} /> */}
+        <Route path='/updateuser/' element={<UpdateProfile user={user}/>} />
         {/* <Route path='/profile/updateProfile/' element={<UpdateProfile/>} /> */}
         <Route path='/' element={<Home />} />
         <Route path="/register" element={<Register/>} />
         <Route path="/*" element={<Erreur404/>} />
-        {/* <Route path='/updateProfile/' element={<UpdateProfile/>} /> */}
-       
+        <Route path='/updateProfile/' element={<Updateprofile/>} />
+         
         {isAuth && user?.isAdmin===true?(
         <Route path="/dashboard" element={<Admin ping={ping} setPing={setPing}/>}  >
           <Route exact path="/dashboard/Addevent" element={<AddEvenement ping={ping} setPing={setPing}/>} />
@@ -95,15 +102,17 @@ dispatch(evenementget())
           <Route exact path="/dashboard/deletuser" element={<DeletUser/>} />
           <Route exact path="/dashboard/edituser" element={<UpdateUser/>} />
           <Route exact path="/dashboard/listuser" element={<UserList />} />
-          <Route path='/dashboard/updateuser/' element={<UpdateUser/>} />
-          <Route path='/dashboard/listbenevole' element={<GetBenevole ping={ping} setPing={setPing}/>} />
+          <Route path='/dashboard/updateuser/:id' element={<UpdateUser user={user}/>} />
+          <Route path='/dashboard/updateBenevole/:id' element={<UpdateB user={user}/>} />
+          <Route path='/dashboard/listbenevole' element={<GetBenevole ping={ping} setPing={setPing} user={user}/>} />
           <Route path='/dashboard/listevents' element={<GetEvenement/>} />
           <Route path='/dashboard/updatebenevole/:id' element={<Updatebenevole ping={ping} setPing={setPing}/>} />
+          <Route path='/dashboard/updatebenevole/' element={<Updatebenevole ping={ping} setPing={setPing}/>} />
           <Route path='/dashboard/updateevents/:id' element={<UpdateEvenement ping={ping} setPing={setPing}/>} />
-          <Route path='/dashboard/AddFP' element={<AddFP/>} />
+          <Route path='/dashboard/AddFP' element={<AddFP ping={ping} setPing={setPing}/>} />
           <Route path='/dashboard/GetFP' element={<GetFP/>} />
           <Route path='/dashboard/UpdatetFP/:id' element={<UpdateFP/>} />
-          <Route path='/dashboard/detaille/:id' element={<DetaillesB Detailles ={ben}/>} />
+          <Route path='/dashboard/detaille/:id' element={<DetaillesB idb={params} Detailles ={user}/>} />
 
           
           <Route path='/dashboard/' element={<Acceuil users={user} benevole={ben} evenement={event} ping={ping} setPing={setPing}/>} />
@@ -118,6 +127,7 @@ dispatch(evenementget())
         </Route>
   ): null
         }
+        
         
       </Routes>
 

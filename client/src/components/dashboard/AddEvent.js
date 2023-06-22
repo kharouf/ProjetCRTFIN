@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import { addEvenement } from '../JS/evenementSlice/eventSlice'
+import { Icon } from '@iconify/react'
 
 const AddEvent = () => {
     const [AddEvent, setAddEvent] = useState({
@@ -16,7 +17,11 @@ const AddEvent = () => {
     const dispatch = useDispatch()
   return (
     <div>
-       
+        <div className="nubuser">
+        <Link to="/dashboard/listuser">
+          <Icon icon="typcn:arrow-back-outline" width="30" color='white' />
+        </Link>
+      </div>
     <div class="wrapper" >
     <form onSubmit={(e)=> e.preventDefault()} class="form-signin">
         <h2 class="form-signin-heading">أضف نشاط</h2>

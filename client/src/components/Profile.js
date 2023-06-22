@@ -9,55 +9,111 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Icon } from '@iconify/react';
 import { addBenevoleuser } from './JS/benevoleSlice/benevoleSlice'
 import logo from "../assets/images/logo.png";
-import { logout } from './JS/userSlice/userSlice';
+import { logout, userupdate } from './JS/userSlice/userSlice';
 import "../scss/profile.css"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import axios from 'axios';
+const url = "http://localhost:5000/user/add"
 
 const Profile = () => {
-   const reloadPage = () => {
+  const reloadPage = () => {
     setTimeout(() => {
       window.location.reload()
     }, -200);
-    
-    
+
+
   }
 
   // 
   const navigate = useNavigate()
-  const  alertAdd = () =>{
-      Swal.fire({
-       
-          icon: 'success',
-          title: 'تم تعمير الإستمارة بنجاح',
-  
-      })
-    }
+  const alertAdd = () => {
+    Swal.fire({
+
+      icon: 'success',
+      title: 'تم تعمير الإستمارة بنجاح',
+
+    })
+  }
   // fuction upload
-  const [image, setImage ] = useState("");
-  const [ url, setUrl ] = useState("");
 
-  const uploadImage = () => {
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", "walakh")
-    data.append("cloud_name","dwfo7j8ic")
- 
 
-      	
-     
-         fetch(" https://api.cloudinary.com/v1_1/dwfo7j8ic/image/upload",{
-          method:"post",
-          body: data
-          })
-          .then(resp => resp.json())
-          .then(data => {
-            console.log(data)
-          setUrl(data.secure_url)
-          
-          })
-          .catch(err => console.log(err))
-          }
+
+
+
+  const [inputValue, setInputValue] = useState("");
+
+  const handleCancel = () => {
+    setInputValue("");
+  };
+  // 
+  const location=useLocation()
+  const userupd = location.state
+  const isAuth = localStorage.getItem('token');
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user.user)
+  const benevole = useSelector(state => state.benevole.benevole)
+  // const [usere, setUsere] = useState({
+  //   name:"",
+  //   lastName:"",
+  //   email:"",
+  //   password:"",
+  //   sexe: "",
+  //   nom_pere: "",
+  //   nom_mere: " ",
+  //   prenom_mere: " ",
+  //   num_tele_parents: 0,
+  //   date_n: "",
+  //   lieu_n: "",
+  //   adresse: "  ",
+  //   cin: 0,
+  //   Annee_volontariat: 0,
+  //   profession: "",
+  //   num_tele: 0,
+  //   email: "",
+  //   niveau: " ",
+  //   diplome: " ",
+  //   certificat_crt: "",
+  //   nom_etablisement: "",
+  //   loisir: "",
+  //   secouriste: "",
+  //   image: "",
+  //   commentaire: "",
+  //   nb_participation: "",
+    
+
+
+  // })
+  const [usere, setUsere] = useState({
+    name:userupd.name,
+    lastName:userupd.lastName,
+    email:userupd.email,
+    isAdmin:userupd.isAdmin,
+    isBenevole:userupd.isBenevole,
+    sexe: userupd.sexe,
+    nom_pere:userupd.nom_pere,
+    nom_mere: userupd.nom_mere,
+    prenom_mere: userupd.prenom_mere,
+    num_tele_parents: userupd.num_tele_parents,
+    date_n: userupd.date_n,
+    lieu_n: userupd.lieu_n,
+    adresse: userupd.adresse,
+    cin: userupd.cin,
+    Annee_volontariat: userupd.Annee_volontariat,
+    profession: userupd.profession,
+    num_tele: userupd.num_tele,
+    email: userupd.email,
+    niveau: userupd.niveau,
+    diplome: userupd.diplome,
+    certificat_crt: userupd.certificat_crt,
+    nom_etablisement: userupd.nom_etablisement,
+    loisir: userupd.loisir,
+    secouriste: userupd.secouriste,
+    image: userupd.image,
+    commentaire: userupd.commentaire,
+    nb_participation: userupd.nb_participation,
+  })
+
   // uploadImage
 
   function previewFile() {
@@ -73,49 +129,43 @@ const Profile = () => {
       reader.readAsDataURL(file);
     }
   }
-  // const benevole = useSelector(state => state.benevole.benevole)
 
-  // cancel button
-  const [inputValue, setInputValue] = useState("");
+  // ooooo
+ 
+  const createPost = async (newImage) => {
+    try {
+      await axios.post(url, newImage)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createPost(usere)
+    console.log("Uploaded")
+  }
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    console.log(base64)
+    setUsere({ ...usere, image: base64 })
+    //  console.log(image)
+  }
 
-  const handleCancel = () => {
-    setInputValue("");
-  };
-  // 
-  const isAuth = localStorage.getItem('token');
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user.user)
-  const benevole = useSelector(state => state.benevole.benevole)
-  const [addVolontaire, setaddVolontaire] = useState({
-    num_dossier:"",
-    nom: "",
-    prenom: "",
-    sexe: "",
-    nom_pere: "",
-    nom_mere: " ",
-    prenom_mere: " ",
-    num_tele_parents: 0,
-    date_n: "",
-    lieu_n: "",
-    adresse: "  ",
-    cin: 0,
-    Annee_volontariat: 0,
-    profession: "",
-    num_tele: 0,
-    email: "",
-    niveau: " ",
-    diplome: " ",
-    certificat_crt: "",
-    nom_etablisement: "",
-    loisir: "",
-    secouriste: "",
-    image: "",
-    commentaire: "",
-    nb_participation: "",
-    isBenevole: false,
-  
-
-  })
+  // upload image
+  function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      };
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+  // upload image
 
   // open and close login
   const [open, setOpen] = useState(false);
@@ -136,8 +186,7 @@ const Profile = () => {
         </div>
         <div className="Navbar-links-admin">
 
-          {/* <a className='link' href="/#programs" >برامجنا</a>
-          <a className='link' href="/#contact">إتصل بنا</a> */}
+
         </div>
         {isAuth ?
           (<div className='Navbar-login-Admin' onClick={() => handleOpen()}>
@@ -170,7 +219,7 @@ const Profile = () => {
               : null}
           </div>) : null}
       </div>
-
+      <form onSubmit={ handleSubmit} >
       <div className='Container-Profile'>
         {/* بيانات خاصة */}
 
@@ -181,20 +230,19 @@ const Profile = () => {
           </div>
           <div className="image-profile image-profile1">
 
-            <div className="avatar-upload" >
-              <div className="avatar-edit" >
-              {/* <input onChange={(e)=> {setaddVolontaire({...addVolontaire,image:setImage(e.target.files[0])}) }} type="file" 
-        name="file"
-       className="form-control"  placeholder="image" required="" /> */}
-                <input onChange={(e) => {setaddVolontaire({ ...addVolontaire, image:setImage("wala") })
-                previewFile()}}type='file' id="imageUpload" accept=".png, .jpg, .jpeg"  />
-                <label htmlFor="imageUpload" ><Icon className='editbtn' icon="iconoir:edit-pencil" width="30" height="30" /></label>
+            <div class="Avatar-upload" >
+              <div class="Avatar-edit" >
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" onChange={(e) => {
+                  handleFileUpload(e)
+                  previewFile()
+                }} />
+
+
+                <label for="imageUpload" ><Icon className='editbtn' icon="iconoir:edit-pencil" width="30" height="30" /></label>
               </div>
-              <div className="avatar-preview">
+              <div class="Avatar-preview">
                 <img className='imgup' id="imagePreview" width={"200px"} height={"200px"} src={logo} />
-
               </div>
-
             </div>
 
             <div className="name-profile">
@@ -209,48 +257,39 @@ const Profile = () => {
 
           <div className="input-profile">
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, nom: user?.name })}  type="text" className="form-control n" placeholder={user?.name} />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, prenom: user?.lastName })}  type="text" className="form-control n" placeholder= {user?.lastName}/>
+
+              <input onChange={(e) => setUsere({ ...usere, nom: user?.name })} type="text" className="form-control n" placeholder={user?.name} />
+              <input onChange={(e) => setUsere({ ...usere, prenom: user?.lastName })} type="text" className="form-control n" placeholder={user?.lastName} />
 
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, email: user?.email })}  type="email" className="form-control n" placeholder={user?.email} />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, num_tele: e.target.value })} type="text" className="form-control n " placeholder="رقم الهاتف" />
+
+              <input onChange={(e) => setUsere({ ...usere, email: user?.email })} type="email" className="form-control n" placeholder={user?.email} />
+              <input onChange={(e) => setUsere({ ...usere, num_tele: e.target.value })} type="text" className="form-control n " placeholder="رقم الهاتف" />
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, date_n: e.target.value })} type="date" className="form-control n" placeholder=" تاريخ الولادة" />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, lieu_n: e.target.value })} type="text" className="form-control n" placeholder=" مكان الولادة" />
+
+              <input onChange={(e) => setUsere({ ...usere, date_n: e.target.value })} type="date" className="form-control n" placeholder=" تاريخ الولادة" />
+              <input onChange={(e) => setUsere({ ...usere, lieu_n: e.target.value })} type="text" className="form-control n" placeholder=" مكان الولادة" />
             </div>
             <div className="input">
               <label>الجنس</label>
-              
+
 
               <label className="rad-label">
-                <input type="radio" value="Homme" className="rad-input" name="sexe" onChange={(e) => setaddVolontaire({ ...addVolontaire, sexe: e.target.value })} />
+                <input type="radio" value="Homme" className="rad-input" name="sexe" onChange={(e) => setUsere({ ...usere, sexe: e.target.value })} />
                 <div className="rad-design"></div>
                 <div className="rad-text">ذكر</div>
               </label>
 
               <label className="rad-label">
-                <input type="radio" value="Femme" className="rad-input" name="sexe" onChange={(e) => setaddVolontaire({ ...addVolontaire, sexe: e.target.value })} />
+                <input type="radio" value="Femme" className="rad-input" name="sexe" onChange={(e) => setUsere({ ...usere, sexe: e.target.value })} />
                 <div className="rad-design"></div>
                 <div className="rad-text">أنثى</div>
               </label>
-
-              {/* <select>
-                <option value="homme" onChange={(e) => setaddVolontaire({ ...addVolontaire, sexe: e.target.value })}>ذكر</option>
-                <option value="femme"onChange={(e) => setaddVolontaire({ ...addVolontaire, sexe: e.target.value })}>أنثى</option>
-               
-              </select> */}
-
-
-
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, cin: e.target.value })} type="numero" className="form-control n cin" placeholder=" ر.ب.ت.و " />
+              <input onChange={(e) => setUsere({ ...usere, cin: e.target.value })} type="numero" className="form-control n cin" placeholder=" ر.ب.ت.و " />
 
             </div>
           </div>
@@ -263,43 +302,43 @@ const Profile = () => {
           </div>
           <div className="input-profile input-profile2" >
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, nom_pere: e.target.value })} type="text" className="form-control n" placeholder="أسم الأب" />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, nom_mere: e.target.value })} type="text" className="form-control n" placeholder="أسم الأم" />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, prenom_mere: e.target.value })} type="text" className="form-control n" placeholder="لقب الأم" />
+
+              <input onChange={(e) => setUsere({ ...usere, nom_pere: e.target.value })} type="text" className="form-control n" placeholder="أسم الأب" />
+              <input onChange={(e) => setUsere({ ...usere, nom_mere: e.target.value })} type="text" className="form-control n" placeholder="أسم الأم" />
+              <input onChange={(e) => setUsere({ ...usere, prenom_mere: e.target.value })} type="text" className="form-control n" placeholder="لقب الأم" />
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, num_tele_parents: e.target.value })} type="text" className="form-control n" placeholder="رقم هاتف الولي" />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, adresse: e.target.value })} type="text" className="form-control n add" placeholder="  العنوان البريدي" />
+
+              <input onChange={(e) => setUsere({ ...usere, num_tele_parents: e.target.value })} type="text" className="form-control n" placeholder="رقم هاتف الولي" />
+              <input onChange={(e) => setUsere({ ...usere, adresse: e.target.value })} type="text" className="form-control n add" placeholder="  العنوان البريدي" />
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, profession: e.target.value })} type="text" className="form-control n etab" placeholder="  الوظيفة" />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, niveau: e.target.value })} type="text" className="form-control n etab" placeholder="  المستوى الدراسي" />
+
+              <input onChange={(e) => setUsere({ ...usere, profession: e.target.value })} type="text" className="form-control n etab" placeholder="  الوظيفة" />
+              <input onChange={(e) => setUsere({ ...usere, niveau: e.target.value })} type="text" className="form-control n etab" placeholder="  المستوى الدراسي" />
 
             </div>
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, diplome: e.target.value })} type="text" className="form-control n" placeholder="  الشهادة" />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, nom_etablisement: e.target.value })} type="text" className="form-control n " placeholder=" المؤسسة " />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, certificat_crt: e.target.value })} type="text" className="form-control n " placeholder="  الشهائد  " />
+
+              <input onChange={(e) => setUsere({ ...usere, diplome: e.target.value })} type="text" className="form-control n" placeholder="  الشهادة" />
+              <input onChange={(e) => setUsere({ ...usere, nom_etablisement: e.target.value })} type="text" className="form-control n " placeholder=" المؤسسة " />
+              <input onChange={(e) => setUsere({ ...usere, certificat_crt: e.target.value })} type="text" className="form-control n " placeholder="  الشهائد  " />
 
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, loisir: e.target.value })} type="text" className="form-control n etab" placeholder=" الهواية المفضلة " />
-              <input onChange={(e) => setaddVolontaire({ ...addVolontaire, Annee_volontariat: e.target.value })} type="text" className="form-control n etab" placeholder="  سنة التطوع  " />
+
+              <input onChange={(e) => setUsere({ ...usere, loisir: e.target.value })} type="text" className="form-control n etab" placeholder=" الهواية المفضلة " />
+              <input onChange={(e) => setUsere({ ...usere, Annee_volontariat: e.target.value })} type="text" className="form-control n etab" placeholder="  سنة التطوع  " />
 
             </div>
             {user?.isAdmin === true ? (
               <><div className="input">
-                {/* <label>الإسم </label> */}
-                <input onChange={(e) => setaddVolontaire({ ...addVolontaire, commentaire: e.target.value })} type="text" className="form-control n etab" placeholder="  ملاحظات " />
-                <input onChange={(e) => setaddVolontaire({ ...addVolontaire, nb_participation: e.target.value })} type="text" className="form-control n etab" placeholder="  عدد المشاركة   " />
+
+                <input onChange={(e) => setUsere({ ...usere, commentaire: e.target.value })} type="text" className="form-control n etab" placeholder="  ملاحظات " />
+                <input onChange={(e) => setUsere({ ...usere, nb_participation: e.target.value })} type="text" className="form-control n etab" placeholder="  عدد المشاركة   " />
 
               </div>
                 <div className="input">
@@ -307,13 +346,13 @@ const Profile = () => {
 
                   <label >متطوع</label>
                   <label className="rad-label">
-                    <input type="radio" value={true} className="rad-input" name="rad" onChange={(e) => setaddVolontaire({ ...addVolontaire, isBenevole: (e.target.value === "true") })} />
+                    <input type="radio" value={true} className="rad-input" name="rad" onChange={(e) => setUsere({ ...usere, isBenevole: (e.target.value === "true") })} />
                     <div className="rad-design"></div>
                     <div className="rad-text">نعم</div>
                   </label>
 
                   <label className="rad-label">
-                    <input type="radio" value={false} className="rad-input" name="rad" onChange={(e) => setaddVolontaire({ ...addVolontaire, isBenevole: (e.target.value === "true") })} />
+                    <input type="radio" value={false} className="rad-input" name="rad" onChange={(e) => setUsere({ ...usere, isBenevole: (e.target.value === "true") })} />
                     <div className="rad-design"></div>
                     <div className="rad-text">لا</div>
                   </label>
@@ -326,31 +365,32 @@ const Profile = () => {
 
 
               <label className="rad-label">
-                <input type="radio" value={true} className="rad-input" name="secouriste" onChange={(e) => setaddVolontaire({ ...addVolontaire, secouriste: (e.target.value === "true") })} />
+                <input type="radio" value={true} className="rad-input" name="secouriste" onChange={(e) => setUsere({ ...usere, secouriste: (e.target.value === "true") })} />
                 <div className="rad-design"></div>
                 <div className="rad-text">نعم</div>
               </label>
 
               <label className="rad-label">
-                <input type="radio" value={false} className="rad-input" name="secouriste" onChange={(e) => setaddVolontaire({ ...addVolontaire, secouriste: (e.target.value === "true")})} />
+                <input type="radio" value={false} className="rad-input" name="secouriste" onChange={(e) => setUsere({ ...usere, secouriste: (e.target.value === "true") })} />
                 <div className="rad-design"></div>
                 <div className="rad-text">لا</div>
               </label>
             </div>
 
           </div>
-   <img className="" src={url}/>
+
 
           <div className="button">
-            <button className='btn-update'
-              onClick={() =>{ dispatch(addBenevoleuser(addVolontaire))
-                uploadImage()
-                setaddVolontaire({isBenevole: true })
+            <button type='submit' className='btn-update'
+              onClick={() => {
+                dispatch(userupdate({ id: userupd._id, user:usere }))
+
+                
                 alertAdd()
                 setTimeout(() => {
                   navigate("/")
                 }, 1500);
-                
+
               }
               }>
               أضف
@@ -363,6 +403,7 @@ const Profile = () => {
 
         </div>
       </div>
+      </form>
       {/* بيانات عامة */}
 
     </div>

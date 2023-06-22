@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Icon } from '@iconify/react';
 import logo from "../../../assets/images/logo.png";
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { updatefamillesP, userupdate } from '../../JS/familles/familles';
 import Swal from 'sweetalert2'
@@ -34,7 +34,16 @@ const UpdateFP = () => {
     })
   }
   return (
-    <div className="updateuser1" >
+    <div>
+
+<div className="retoureF">
+        <div className="nubuser">
+        <Link to="/dashboard/GetFP">
+          <Icon icon="typcn:arrow-back-outline" width="30" color='white' />
+        </Link>
+      </div>
+      </div>
+      <div className="updateuser1" >
     <form onSubmit={(e)=> e.preventDefault()} className="form-signin11 form-signin">
         <h2 className="form-signin-heading"> أضف عائلة</h2>
         <div className="fff">
@@ -52,13 +61,21 @@ const UpdateFP = () => {
        
 
   
-        <button className="btn-primary" onClick={()=> dispatch(updatefamillesP({familles:UpF,id:params.id  }))}>تعديل</button>
+        <button className="btn-primary" onClick={()=> dispatch(updatefamillesP({familles:UpF,id:params.id  }),
+        navigate("/dashboard/GetFP")
+      
+
+        
+        
+        )}>تعديل</button>
 
 {/* ,  */}
         
     </form>
     
     </div>
+    </div>
+    
   )
 }
 

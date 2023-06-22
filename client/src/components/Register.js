@@ -1,7 +1,7 @@
 import React, { useState } from 'react' 
 
 import {useDispatch} from 'react-redux'
-import { userRegister } from './JS/userSlice/userSlice'
+import { userLogin, userRegister } from './JS/userSlice/userSlice'
 import {Link, useNavigate} from 'react-router-dom'
 import logino  from "../assets/images/login.png";
 import { Icon } from '@iconify/react';
@@ -11,8 +11,34 @@ const Register = () => {
     name:"",
     lastName:"",
     email:"",
-    password:""
+    password:"",
+    isAdmin: false,
+    isBenevole: false,
+    sexe: "",
+    nom_pere: "",
+    nom_mere: " ",
+    prenom_mere: " ",
+    num_tele_parents: 0,
+    date_n: "",
+    lieu_n: "",
+    adresse: "  ",
+    cin: 0,
+    Annee_volontariat: 0,
+    profession: "",
+    num_tele: 0,
+    email: "",
+    niveau: " ",
+    diplome: " ",
+    certificat_crt: "",
+    nom_etablisement: "",
+    loisir: "",
+    secouriste: "",
+    image: "",
+    commentaire: "",
+    nb_participation: "",
+
   })
+ 
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -31,6 +57,7 @@ const navigate = useNavigate()
 
         <button className="btn-primary" onClick={()=> 
         dispatch(userRegister(register),
+        
         navigate("/login")
         
         )

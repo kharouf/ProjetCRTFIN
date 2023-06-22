@@ -144,7 +144,7 @@ const Updatebenevole = () => {
       <div  className='Container-Profile25'>
         {/* بيانات خاصة */}
 
-        <div className="form-profile25">
+        {/* <div className="form-profile25">
           
           <div className="title-profile">
             بيانات خاصة
@@ -175,20 +175,20 @@ const Updatebenevole = () => {
 
           <div className="input-profile">
             <div className="input">
-              {/* <label>الإسم </label> */}
+              
               <input  onChange={(e) => setupdB({ ...updB, nom: e.target.value })}  type="text" className="form-control n" placeholder={benevoleupd?.name} />
               <input  onChange={(e) => setupdB({ ...updB, prenom: e.target.value })} value={benevoleupd?.lastName} type="text" className="form-control n" placeholder={benevoleupd?.lastName} />
 
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
+              
               <input onChange={(e) => setupdB({ ...updB, email: e.target.value })} value={benevoleupd?.email} type="email" className="form-control n" placeholder={benevoleupd?.email} />
               <input onChange={(e) => setupdB({ ...updB, num_tele: e.target.value })} type="text" className="form-control n " placeholder="رقم الهاتف" />
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
+              
               <input onChange={(e) => setupdB({ ...updB, date_n: e.target.value })} type="date" className="form-control n" placeholder=" تاريخ الولادة" />
               <input onChange={(e) => setupdB({ ...updB, lieu_n: e.target.value })} type="text" className="form-control n" placeholder=" مكان الولادة" />
             </div>
@@ -209,55 +209,57 @@ const Updatebenevole = () => {
 
             </div>
           </div>
-        </div>
+        </div> */}
         {/* بيانات خاصة */}
         {/* بيانات عامة */}
         <div className="form-profile23">
-          <div className="title-profile">
-            بيانات عامة
-          </div>
+          
           <div className="input-profile input-profile2" >
-            <div className="input">
-              {/* <label>الإسم </label> */}
+            {/* <div className="input">
+              
               <input onChange={(e) => setupdB({ ...updB, nom_pere: e.target.value })} type="text" className="form-control n" placeholder="أسم الأب" />
               <input onChange={(e) => setupdB({ ...updB, nom_mere: e.target.value })} type="text" className="form-control n" placeholder="أسم الأم" />
               <input onChange={(e) => setupdB({ ...updB, prenom_mere: e.target.value })} type="text" className="form-control n" placeholder="لقب الأم" />
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
+              
               <input onChange={(e) => setupdB({ ...updB, num_tele_parents: e.target.value })} type="text" className="form-control n" placeholder="رقم هاتف الولي" />
               <input onChange={(e) => setupdB({ ...updB, adresse: e.target.value })} type="text" className="form-control n add" placeholder="  العنوان البريدي" />
             </div>
 
             <div className="input">
-              {/* <label>الإسم </label> */}
+              
               <input onChange={(e) => setupdB({ ...updB, profession: e.target.value })} type="text" className="form-control n etab" placeholder="  الوظيفة" />
               <input onChange={(e) => setupdB({ ...updB, niveau: e.target.value })} type="text" className="form-control n etab" placeholder="  المستوى الدراسي" />
 
             </div>
             <div className="input">
-              {/* <label>الإسم </label> */}
+              
               <input onChange={(e) => setupdB({ ...updB, diplome: e.target.value })} type="text" className="form-control n" placeholder="  الشهادة" />
               <input onChange={(e) => setupdB({ ...updB, nom_etablisement: e.target.value })} type="text" className="form-control n " placeholder=" المؤسسة " />
               <input onChange={(e) => setupdB({ ...updB, certificat_crt: e.target.value })} type="text" className="form-control n " placeholder="  الشهائد  " />
 
-            </div>
+            </div> */}
 
-            <div className="input">
-              {/* <label>الإسم </label> */}
+            {/* <div className="input">
+              
               <input onChange={(e) => setupdB({ ...updB, loisir: e.target.value })} type="text" className="form-control n etab" placeholder=" الهواية المفضلة " />
               <input onChange={(e) => setupdB({ ...updB, Annee_volontariat: e.target.value })} type="text" className="form-control n etab" placeholder="  سنة التطوع  " />
 
-            </div>
+            </div> */}
+
             {user?.isAdmin === true ? (
-              <><div className="input">
-                {/* <label>الإسم </label> */}
+              <>
+              <div className="title-profile">
+ملاحظات          </div>
+              <div className="input">
+                
                 <input onChange={(e) => setupdB({ ...updB, commentaire: e.target.value })} type="text" className="form-control n etab" placeholder="  ملاحظات " />
                 <input onChange={(e) => setupdB({ ...updB, nb_participation: e.target.value })} type="text" className="form-control n etab" placeholder="  عدد المشاركة   " />
 
               </div>
-                <div className="input">
+                {/* <div className="input">
 
                   <label >متطوع</label>
                   <label>
@@ -268,10 +270,10 @@ const Updatebenevole = () => {
                     <input type="radio" value="false" name="radio2"onChange={(e) => setupdB({ ...updB, isbenevole: e.target.value })} />
                     <span>لا</span>
                   </label>
-                </div>
+                </div> */}
               </>) : null
             }
-            <div className="input">
+            {/* <div className="input">
 
               <label >مسعف</label>
               <label>
@@ -282,7 +284,7 @@ const Updatebenevole = () => {
                 <input type="radio" value="false" name="radio1" onChange={(e) => setupdB({ ...updB, secouriste: e.target.value })}/>
                 <span>لا</span>
               </label>
-            </div>
+            </div> */}
 
           </div>
 

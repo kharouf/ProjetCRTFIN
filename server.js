@@ -26,7 +26,7 @@ app.use('/benevole' , require('./routes/benevole'))
 app.use('/evenement', require('./routes/evenement'))
 app.use('/familles' , require('./routes/famillesP'))
 
-
+app.use('/upload', express.static(".upload"))
 const PORT = process.env.PORT || 5000
 
 // creaation of the server

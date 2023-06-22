@@ -4,6 +4,7 @@ import { userdelet, userget } from "../../JS/userSlice/userSlice";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { Icon } from '@iconify/react';
 import Spiner from '../../Spiner';
 
 const UserList = () => {
@@ -24,6 +25,9 @@ const UserList = () => {
     
   }
 
+
+
+
   const users = useSelector((state) => state.user?.usera);
   const [swal, ...rest] = useState({});
   const MySwal = withReactContent(Swal)
@@ -37,14 +41,37 @@ const UserList = () => {
     })
   }
 
+  
 
 
 
 
   return (
-    <>
-      {/* <button ><Link to="/dashboard/adduser"> wala</Link></button> */}
+    <div className='addusercontent'>
+      
+   <div className="lists">
+   {/* اضف مستخدم */}
+       <button >
+        <Link to="/dashboard/adduser"><Icon icon="ri:user-add-line" width="30" /> </Link> 
+        </button>
+
+      
+       <div className="nubuser">
+       {/* <Icon icon="octicon:number-16" width="30" color='black' />    */}
+       {/* <Icon icon="fluent:calendar-week-numbers-24-regular" width="30" rotate={2} /> */}
+        {/* <h1>عدد المستخدمين </h1> */}
+        <h1> {users?.length-1} </h1>
+        <Icon icon="tabler:number" width="30" />
+       </div>
+       
+       
+    </div>
+     <div className='title-listes'>
+      <h1>قائمة المتسخدم</h1>
+    </div>
       <div className='listuser'>
+      
+        
         <table className="table">
           <tr>
             <td className="td">جذف</td>
@@ -56,6 +83,7 @@ const UserList = () => {
             <td className="td">اللقب</td>
             <td className="td">الاسم</td>
             <td className="td">رقم الملف</td>
+            <td className="td"> الصورة</td>
 
           </tr>
         </table>
@@ -64,8 +92,22 @@ const UserList = () => {
 
 
         <div className="user" >
+
+        {users?.length-1 == 0 ? 
+      // <h3 class="animate-charcter"> </h3>
+      <div class='co'>
+  <div class='loader'>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--dot'></div>
+    <div class='loader--text'></div>
+  </div>
+</div>:
           <table className="table" >
-            {users?.map((user, i) =>
+            {users?.map((user, i) => user?.isAdmin === false &&(
               <tr key={i}>
                 <td className="td"><button className=" btnc-userlist"
                   onClick={() => {
@@ -76,11 +118,12 @@ const UserList = () => {
 
                     navigate("/dashboard/listuser")
                     
+                    
                   }}>جذف
 
 
                 </button></td>
-                <td className="td "><Link to="/dashboard/updateuser/" state={user}><button className=" btna-userlist">تعديل</button></Link></td>
+                <td className="td "><Link to={`/dashboard/updateuser/${user?._id}`} state={user}><button className=" btna-userlist">تعديل</button></Link></td>
 
                 {/* <td className="td"><img src="" alt="profile" /></td> */}
 
@@ -91,9 +134,10 @@ const UserList = () => {
 
                 <td className="td">{user?.name}</td>
                 <td className="td">{user?.num_dossier}</td>
+                <td className="td td-img"><img className='imglisteuser'  src={user?.image}/></td>
               </tr>
-            )}
-          </table>
+            ))}
+          </table>}
         </div>
 
 
@@ -131,7 +175,7 @@ const UserList = () => {
 </div>
 )}
 </div> */}
-    </>
+    </div>
   )
 }
 

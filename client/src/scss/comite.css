@@ -1,5 +1,7 @@
 .comite{
     padding-bottom: 1cm;
+    
+    
 }
 .comite-title{
     display: flex;
@@ -25,6 +27,10 @@ h2{
 /* list_comite */
 .list_comite{
     background-color: #ffffff;
+     /* border: 1px solid red; */
+    /*height: 100vh; */
+    padding-top: 2cm;
+   
     
     
     

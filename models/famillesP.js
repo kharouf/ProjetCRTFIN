@@ -6,9 +6,8 @@ const schema = mongoose.Schema
 const famillesPschema = new schema({
 
     num_dossier: {
-        type: String,
-        
-        value: "CRTGHF"
+        type:String,
+        default:"CRTGH-FP"+Math.floor(Math.random() * 1000)
 
     },
     // بيانات خاصة بصاحب الحق

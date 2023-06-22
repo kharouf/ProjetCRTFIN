@@ -1,6 +1,33 @@
 const express = require('express')
 
 const evenementRouter = express.Router()
+const multer  = require('multer')
+const upload = multer({ dest: 'upload/' })
+const moment  = require('moment')
+// img storage path
+// const imgconfig = multer.diskStorage({
+//     destination:(req,file,callback)=>{
+//         callback(null,"./upload")
+//     },
+//     filename:(req,file,callback)=>{
+//         callback(null,`imgae-${Date.now()}. ${file.originalname}`)
+//     }
+// })
+
+
+// // img filter
+// const isImage = (req,file,callback)=>{
+//     if(file.mimetype.startsWith("image")){
+//         callback(null,true)
+//     }else{
+//         callback(new Error("only images is allowd"))
+//     }
+// }
+
+// const upload = multer({
+//     storage:imgconfig,
+//     fileFilter:isImage
+// });
 
 const evenement = require("../models/evenement")
 
@@ -22,12 +49,15 @@ evenementRouter.get('/gete', isAuth(), async (req, res) => {
 
 }
 )
-evenementRouter.post('/add', isAuth(), async (req, res) => {
+evenementRouter.post('/add', isAuth(),async (req, res) => {
 
     try {
         const newevenement = await  evenement.create({
+           
             ...req.body,
             clientId: req.user?.id,
+            
+            
             
         });
         

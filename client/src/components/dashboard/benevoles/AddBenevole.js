@@ -12,6 +12,7 @@ import { addBenevole,addBenevoleuser } from '../../JS/benevoleSlice/benevoleSlic
 import logo from "../../assets/images/logo.png";
 import { logout } from '../../JS/userSlice/userSlice';
 import "../scss/profile.css"
+import axios from 'axios';
 const reloadPage = () => {
   window.location.reload()
   
@@ -19,19 +20,7 @@ const reloadPage = () => {
 const AddBenevole = () => {
   // fuction upload
 
-  function previewFile() {
-    var preview = document.getElementsByClassName('imgup')[0];
-    var file = document.querySelector('input[type=file]').files[0];
-    var reader = new FileReader();
-
-    reader.addEventListener("load", function () {
-      preview.src = reader.result;
-    }, false);
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
+  
   // const benevole = useSelector(state => state.benevole.benevole)
 
   // cancel button
@@ -83,6 +72,43 @@ const AddBenevole = () => {
 
   })
 
+  // upload image
+ 
+function previewFile() {
+  var preview = document.getElementsByClassName('imgup')[0];
+  var file = document.querySelector('input[type=file]').files[0];
+  var reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+// ooooo
+const url = "http://localhost:5000/benevole/upload"
+const createPost = async (nouveauIMG) => {
+  try{
+    await axios.post(url, nouveauIMG)
+  }catch(error){
+    console.log(error)
+  }
+}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createPost(addVolontaire)
+    console.log("Uploaded")
+  }
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    console.log(base64)
+    setaddVolontaire({ ...addVolontaire, image : base64 })
+    //  console.log(image)
+  }
+
   // open and close login
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -95,7 +121,7 @@ const AddBenevole = () => {
 
 
   return (
-    <div className='wrapper1 profile'>
+    <div  className='wrapper1 profile'>
       <div className='Navbaractive Navbar-Admin'>
         <div className='Navbar-logo'>
           <Link to="/"><img id='logocrt' src={logo} alt='logo' /></Link>
@@ -141,22 +167,24 @@ const AddBenevole = () => {
         {/* بيانات خاصة */}
 
         <div className="form-profile">
-          
+        <form onSubmit={ handleSubmit} className="form-signin11 form-signin">
           <div className="title-profile">
             بيانات خاصة
           </div>
           <div className="image-profile image-profile1">
             
-            <div class="avatar-upload" >
-              <div class="avatar-edit" >
-                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" onChange={() => previewFile()} />
+          <div class="Avatar-upload" >
+              <div class="Avatar-edit" >
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"  onChange={(e)=> {
+                  handleFileUpload(e)
+                   previewFile()} } />
+                
+                
                 <label for="imageUpload" ><Icon className='editbtn' icon="iconoir:edit-pencil" width="30" height="30" /></label>
               </div>
-              <div class="avatar-preview">
+              <div class="Avatar-preview">
                 <img className='imgup' id="imagePreview" width={"200px"} height={"200px"} src={logo} />
-
               </div>
-
             </div>
             
             <div className="name-profile">
@@ -205,6 +233,7 @@ const AddBenevole = () => {
 
             </div>
           </div>
+          </form>
         </div>
         {/* بيانات خاصة */}
         {/* بيانات عامة */}
@@ -306,3 +335,16 @@ const AddBenevole = () => {
 }
 
 export default AddBenevole
+// upload image
+function convertToBase64(file){
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
+}

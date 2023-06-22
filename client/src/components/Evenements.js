@@ -31,6 +31,7 @@ import Descriptionevent from './Descriptionevent'
 import { useDispatch, useSelector } from 'react-redux'
 import { evenementdelet, evenementget } from './JS/evenementSlice/eventSlice'
 import { Link } from 'react-router-dom'
+import { Icon } from '@iconify/react'
 
 const Evenements = () => {
   const dispatch = useDispatch()
@@ -42,8 +43,10 @@ const Evenements = () => {
   console.log(evenements)
   function reverseString(str) {
     return str.split('-').reverse().join('-');
+    
   }
-  const [show, setShow] = useState(false);
+  
+  const [show, setShow] = useState(true);
   return (
     <section id='evenement'>
    <div className="list-evenements">
@@ -62,14 +65,39 @@ const Evenements = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
+       {evenements?.length == 0? 
+       (
        
-        {evenements?.map((evenement, i) =>
+      
+        
+        <div className='lodinggg'>
+      
+       <div class='co'>
+   <div class='loader'>
+     <div class='loader--dot'></div>
+     <div class='loader--dot'></div>
+     <div class='loader--dot'></div>
+     <div class='loader--dot'></div>
+     <div class='loader--dot'></div>
+     <div class='loader--dot'></div>
+     <div class='loader--text'></div>
+   </div>
+ </div>
+ </div>
+  
+       )
+
+       
+     
+ :
+       
+        evenements?.map((evenement, i) =>
        
       <SwiperSlide key={i}>
        
           <div  className="events">
             <div className="cardimg">
-              <img src={gofa} alt="" />
+              <img src={evenement?.image} alt="" />
             </div>
             <div className="discription">
 
@@ -82,6 +110,19 @@ const Evenements = () => {
               
               <h1 > الى يوم {reverseString(evenement?.endDate.split('T')[0])}</h1>
               <h1>من يوم {reverseString(evenement?.startDate.split('T')[0])}</h1>
+            </div>
+
+            <div class="card-meta--date">
+            <h1 >  {reverseString(evenement?.instatnt.split('T')[1].split('.')[0])}</h1>
+              <Icon icon="ic:baseline-update" color="blue" width="30" />
+
+               <h1>{reverseString(evenement?.instatnt.split('T')[0])}</h1>
+               <Icon icon="clarity:date-solid-badged" color="blue" width="30" />
+
+              
+
+              {/* <h1>{toLocaleTimeString(evenement?.date)}</h1> */}
+              
             </div>
 
             <div className="card-meta--btn">
